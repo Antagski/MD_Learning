@@ -44,7 +44,9 @@ class Alloy():
         filename = "elementGrid.txt"
         with open(filename, 'w') as f:
             f.write(f"box {self.box_size[0]} {self.box_size[1]} {self.box_size[2]}\n")
-            np.savetxt(filename, self.cell_loc_list, fmt='%s')
+
+        with open(filename, 'a') as f:
+            np.savetxt(f, self.cell_loc_list, fmt='%s', delimiter=' ')
 
 
 if __name__ == '__main__':
