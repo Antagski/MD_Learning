@@ -24,5 +24,9 @@ vp.render_anim('video_test.mp4', (800, 1200), 60, (1, 1, 1),
                every_nth=2, range=(0, 60), renderer=OpenGLRenderer(antialiasing_level=1))
 # OpenGLRenderer(antialiasing_level=1) 抗锯齿级别：1没有，n为n倍超采样
 # size决定清晰度，size越大，清晰度越高，如果renderer=TachyonRenderer()表示用cpu渲染，会慢很多，但好像更精致
+"""
+vp.render_image(filename='image_test.png', size=(3000, 3000), frame=1000, background=(1, 1, 1),
+                renderer=OpenGLRenderer(antialiasing_level=4))
+"""
 end_time = time.time()
 print(f"Cost time: {end_time - start_time}")

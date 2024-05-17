@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import os
 
 # 指定文件夹路径
-folder_path = 'D:/Atomsk/Model/合金拉伸/CoNiCr/Outputs/75_150_600/Rate'
+folder_path = 'D:/Atomsk/Model/合金拉伸/CoNiCr/拉伸/Outputs/75_150_600/Rate'
 
 # 初始化多维列表
 data_list = np.zeros((1, 5), dtype=int)

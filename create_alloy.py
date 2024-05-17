@@ -1,6 +1,7 @@
 import numpy as np
 import math
 
+
 class Alloy():
     def __init__(self, box_size=np.array([50, 50, 50]), split_axis='z', num_split=np.array(2),
                  cell_loc=np.array([[0, 0.5], [0.5, 1]]), cell_size=np.array([0.2, 0.2])):
@@ -16,7 +17,7 @@ class Alloy():
         cell_loc = np.zeros((1, 3))
 
         for i in range(self.num_split):
-            size = math.ceil(1 / (self.cell_size[i]**3))
+            size = math.ceil(1 / (self.cell_size[i] ** 3))
             loc = np.zeros((size, 3), dtype=int)
             if self.split_axis == 'x':
                 idx = [0, 1, 2]
@@ -40,8 +41,8 @@ class Alloy():
 
         self.cell_loc_list = cell_loc
 
-    def write_file(self):
-        filename = "elementGrid.txt"
+    def write_file(self, filename="elementGrid.txt"):
+        # filename = "elementGrid.txt"
         with open(filename, 'w') as f:
             f.write(f"box {self.box_size[0]} {self.box_size[1]} {self.box_size[2]}\n")
 
@@ -50,6 +51,7 @@ class Alloy():
 
 
 if __name__ == '__main__':
+    """
     box_size = np.array([100, 200, 800])
     split_axis = 'z'
     num_split = np.array(3)
@@ -57,3 +59,20 @@ if __name__ == '__main__':
     cell_size = np.array([0.2, 0.5, 0.2])
     alloy = Alloy(box_size, split_axis, num_split, cell_loc, cell_size)
     alloy.write_file()
+    """
+
+    from Alloy_Database import grand_bar, cubic_1nm, cubic_3nm, cubic_5nm, cubic_7nm, cubic_9nm, cubic_12nm
+
+    alloy_configurations = {
+        'cubic_1nm': cubic_1nm,
+        'cubic_3nm': cubic_3nm,
+        'cubic_5nm': cubic_5nm,
+        'cubic_7nm': cubic_7nm,
+        'cubic_9nm': cubic_9nm,
+        'cubic_12nm': cubic_12nm
+    }
+
+    for name, alloy in alloy_configurations.items():
+        _alloy = Alloy(alloy["box_size"], alloy["split_axis"], alloy["num_split"],
+                       alloy["cell_loc"], alloy["cell_size"])
+        _alloy.write_file(filename=f"{name}.txt")
