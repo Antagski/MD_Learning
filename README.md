@@ -2,4 +2,4 @@
 create_alloy用于创建多晶节点的\
 cal_rate用于后处理计算各种结构原子占比\
 read_file用于对rate.*批处理\
-render用于渲染动画\
+render用于渲染动画
