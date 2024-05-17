@@ -2,4 +2,6 @@
 create_alloy用于创建多晶节点的\
 cal_rate用于后处理计算各种结构原子占比\
 read_file用于对rate.*批处理\
-render用于渲染动画
+render用于渲染动画\
+Allot_Database用于保存各种模型参数，配合create_alloy生成种子\
+batch_processing用于Linux批处理生成多晶
