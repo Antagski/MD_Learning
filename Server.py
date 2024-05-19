@@ -29,15 +29,13 @@ def read_unit(file_path, unit_number, line_number, unit_header):
             if current_line == end_line - 1:
                 break
 
-    with open("temp.txt", 'w') as f:
-        f.write('\n'.join(unit_data))
-
     return ''.join(unit_data)
 
 
 # Example usage
 if __name__ == "__main__":
     file_path = '/root/autodl-tmp/CoCrNi/Tension/5nm/CoCrNiTension.xyz'
+
     unit_header = "ITEM: TIMESTEP"
 
     # 求解单元长度
