@@ -38,7 +38,7 @@ def read_file(PATH):
     common = CommonNeighborAnalysisModifier()
     pipeline.modifiers.append(common)
 
-    vp = Viewport(type=Viewport.Type.Ortho, camera_dir=(1, 0, 0), )  # camera_dir = (0, 0, 1)表示从Z轴方向看去
+    vp = Viewport(type=Viewport.Type.Ortho, camera_dir=(1, 1, 1), )  # camera_dir = (0, 0, 1)表示从Z轴方向看去
     vp.zoom_all()
     return vp
 

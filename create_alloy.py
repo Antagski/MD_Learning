@@ -35,10 +35,6 @@ class Alloy():
 
             cell_loc = np.append(cell_loc, loc, axis=0)
         cell_loc = np.delete(cell_loc, 0, axis=0)
-
-        # 确保行的唯一性
-        cell_loc = np.unique(cell_loc, axis=0)
-
         cell_loc = cell_loc.astype(str)
         cell_loc = np.insert(cell_loc, 0, ['node'], axis=1)
         cell_loc = np.insert(cell_loc, 4, ['random'], axis=1)

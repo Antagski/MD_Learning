@@ -24,8 +24,10 @@ def save_to_temp_file(data, file_path):
 
 
 def visualize_data(temp_file, output_image):
+    # 假设 visualize 是一个本地可执行文件
     vp = read_file(PATH=temp_file)
     render_image(vp, filename=output_image)
+    # subprocess.run(["./visualize", temp_file, output_image])
 
 
 def main():
@@ -39,8 +41,6 @@ def main():
 
     while True:
         unit_number = int(input("Enter the unit number to retrieve: "))
-        if unit_number == -1:
-            return
 
         # 获取远程单元数据
         unit_data = get_remote_unit_data(host, port, username, password, unit_number)

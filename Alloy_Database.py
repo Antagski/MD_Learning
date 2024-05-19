@@ -13,9 +13,9 @@ grand_bar = {
 cubic_1nm = {
     'box_size': np.array([500, 500, 500]),
     'split_axis': 'z',
-    'num_split': np.array(2),
-    'cell_loc': np.array([[0, 0.5], [0.5, 1]]),
-    'cell_size': np.array([0.02, 0.02])
+    'num_split': np.array(1),
+    'cell_loc': np.array([[0, 1]]),
+    'cell_size': np.array([0.02])
 }
 
 cubic_3nm = {
