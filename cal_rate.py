@@ -9,9 +9,8 @@ import PySide6.QtWidgets
 from ovito.modifiers import CommonNeighborAnalysisModifier, SliceModifier, DislocationAnalysisModifier
 
 
-def read_file() -> ovito.pipeline.Pipeline:
+def read_file(PATH = 'D:/Atomsk/Model/合金拉伸/CoNiCr/拉伸/Outputs/75_150_600/CoCrNiTension.xyz') -> ovito.pipeline.Pipeline:
     # PATH = 'D:/Atomsk/Model/合金拉伸/CoNiCr/拉伸/Outputs/30_60_240/CoCrNiTension.xyz'
-    PATH = 'D:/Atomsk/Model/合金拉伸/CoNiCr/拉伸/Outputs/75_150_600/CoCrNiTension.xyz'
     pipeline = ovito.io.import_file(PATH)
     print("Finish read_file")
     return pipeline
@@ -39,7 +38,7 @@ def compute_dislocation(pipeline: ovito.pipeline.Pipeline) -> None:
     num_frames = pipeline.source.num_frames
     dislocation_data = np.zeros((num_frames - 1, 8), dtype=float)
     for idx in range(num_frames - 1):
-        if idx == 1:
+        if idx == 1 and __name__ == '__main__':
             _start = time.time()
 
         data = pipeline.compute(idx)
@@ -55,7 +54,7 @@ def compute_dislocation(pipeline: ovito.pipeline.Pipeline) -> None:
         dislocation_data[idx, :] = np.array([total_line_length, cell_volume, perfect_length,
                                              shockley_length, stair_rod_length, hirth_length,
                                             frank_length, other_length])
-        if idx == 1:
+        if idx == 1 and __name__ == '__main__':
             print(f"One Epoch cost:{time.time()-_start}")
     print("Finish compute")
     np.savetxt("dislocation_data.txt", dislocation_data, fmt='%d')
@@ -80,7 +79,7 @@ def plot_rate() -> None:
 
 def main():
     app = PySide6.QtWidgets.QApplication()
-    pipeline = read_file()
+    pipeline = read_file(PATH="E:/Server/5nm/CoCrNiTension.xyz")
     # compute_structure_type(pipeline)
     # plot_rate()
     compute_dislocation(pipeline)
