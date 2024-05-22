@@ -11,8 +11,6 @@ from ovito.vis import Viewport, TachyonRenderer, OpenGLRenderer, AnariRenderer
 from ovito.modifiers import CommonNeighborAnalysisModifier, SliceModifier
 
 
-
-
 def render_anim(vp, filename='video_test.mp4', size=(800, 1200), fps=60, background=(1, 1, 1),
                    every_nth=2, range=(0, 60), renderer=OpenGLRenderer(antialiasing_level=1)):
     vp.render_anim(filename=filename, size=size, fps=fps, background=background,

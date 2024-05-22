@@ -56,11 +56,13 @@ def main():
         img = Image.open(output_image)
         img.show()
 
+        """
         # 清理文件
         if os.path.exists(temp_file):
             os.remove(temp_file)
         if os.path.exists(output_image):
             os.remove(output_image)
+        """
 
 
 if __name__ == "__main__":
