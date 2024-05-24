@@ -11,15 +11,15 @@ grand_bar = {
 }
 
 cubic_1nm = {
-    'box_size': np.array([500, 500, 500]),
+    'box_size': np.array([300, 300, 300]),
     'split_axis': 'z',
     'num_split': np.array(1),
     'cell_loc': np.array([[0, 1]]),
-    'cell_size': np.array([0.02])
+    'cell_size': np.array([0.025])
 }
 
 cubic_3nm = {
-    'box_size': np.array([500, 500, 500]),
+    'box_size': np.array([300, 300, 300]),
     'split_axis': 'z',
     'num_split': np.array(1),
     'cell_loc': np.array([[0, 1]]),
@@ -27,33 +27,49 @@ cubic_3nm = {
 }
 
 cubic_5nm = {
-    'box_size': np.array([500, 500, 500]),
+    'box_size': np.array([300, 300, 300]),
     'split_axis': 'z',
     'num_split': np.array(1),
     'cell_loc': np.array([[0, 1]]),
-    'cell_size': np.array([0.1])
+    'cell_size': np.array([0.175])
 }
 
 cubic_7nm = {
-    'box_size': np.array([500, 500, 500]),
+    'box_size': np.array([300, 300, 300]),
     'split_axis': 'z',
     'num_split': np.array(1),
     'cell_loc': np.array([[0, 1]]),
-    'cell_size': np.array([0.14])
+    'cell_size': np.array([0.23])
 }
 
 cubic_9nm = {
-    'box_size': np.array([500, 500, 500]),
+    'box_size': np.array([300, 300, 300]),
     'split_axis': 'z',
     'num_split': np.array(1),
     'cell_loc': np.array([[0, 1]]),
-    'cell_size': np.array([0.18])
+    'cell_size': np.array([0.3])
 }
 
 cubic_12nm = {
-    'box_size': np.array([500, 500, 500]),
+    'box_size': np.array([300, 300, 300]),
     'split_axis': 'z',
     'num_split': np.array(1),
     'cell_loc': np.array([[0, 1]]),
-    'cell_size': np.array([0.24])
+    'cell_size': np.array([0.4])
+}
+
+cubic_11nm = {
+    'box_size': np.array([300, 300, 300]),
+    'split_axis': 'z',
+    'num_split': np.array(1),
+    'cell_loc': np.array([[0, 1]]),
+    'cell_size': np.array([0.36])
+}
+
+cubic_13nm = {
+    'box_size': np.array([300, 300, 300]),
+    'split_axis': 'z',
+    'num_split': np.array(1),
+    'cell_loc': np.array([[0, 1]]),
+    'cell_size': np.array([0.43])
 }
