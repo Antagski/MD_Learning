@@ -11,13 +11,24 @@ class Alloy():
         self.cell_loc = cell_loc
         self.cell_size = cell_size
 
+        # 计算临界距离
+        self.critical_distance = self.box_size[0] * self.cell_size[0]
+
         self.create_cell()
+
+    def distance_check(self, loc, existing_locs):
+        """ 检查 loc 是否与 existing_locs 中的任何一个点过近 """
+        if existing_locs.size == 0:
+            return False
+        distances = np.linalg.norm(existing_locs - loc, axis=1)
+        return np.any(distances < self.critical_distance)
 
     def create_cell(self):
         cell_loc = np.zeros((1, 3))
+        existing_locs = np.empty((0, 3))
 
         for i in range(self.num_split):
-            size = math.ceil(1 / (self.cell_size[i] ** 3))
+            size = math.floor(1 / (self.cell_size[i] ** 3))
             loc = np.zeros((size, 3), dtype=int)
             if self.split_axis == 'x':
                 idx = [0, 1, 2]
@@ -29,12 +40,26 @@ class Alloy():
             start_loc = math.ceil(self.cell_loc[i, 0] * self.box_size[idx[0]])
             stop_loc = math.floor(self.cell_loc[i, 1] * self.box_size[idx[0]])
 
-            loc[:, [idx[0]]] = np.random.randint(start_loc, stop_loc, size=(loc.shape[0], 1), dtype=int)
-            loc[:, [idx[1]]] = np.random.randint(1, self.box_size[idx[1]], size=(loc.shape[0], 1), dtype=int)
-            loc[:, [idx[2]]] = np.random.randint(1, self.box_size[idx[2]], size=(loc.shape[0], 1), dtype=int)
+            for j in range(size):
+                while True:
+                    new_loc = np.zeros(3, dtype=int)
+                    new_loc[idx[0]] = np.random.randint(start_loc, stop_loc)
+                    new_loc[idx[1]] = np.random.randint(0, self.box_size[idx[1]])
+                    new_loc[idx[2]] = np.random.randint(0, self.box_size[idx[2]])
+
+                    if not self.distance_check(new_loc, existing_locs):
+                        loc[j] = new_loc
+                        existing_locs = np.append(existing_locs, [new_loc], axis=0)
+                        print(j)
+                        break
 
             cell_loc = np.append(cell_loc, loc, axis=0)
         cell_loc = np.delete(cell_loc, 0, axis=0)
+
+        # 确保行的唯一性
+        cell_loc = np.unique(cell_loc, axis=0)
+        np.random.shuffle(cell_loc)
+
         cell_loc = cell_loc.astype(str)
         cell_loc = np.insert(cell_loc, 0, ['node'], axis=1)
         cell_loc = np.insert(cell_loc, 4, ['random'], axis=1)
@@ -61,15 +86,11 @@ if __name__ == '__main__':
     alloy.write_file()
     """
 
-    from Alloy_Database import grand_bar, cubic_1nm, cubic_3nm, cubic_5nm, cubic_7nm, cubic_9nm, cubic_12nm
+    from Alloy_Database import grand_bar, cubic_13nm, cubic_12nm, cubic_5nm, cubic_7nm, cubic_9nm, cubic_11nm
 
     alloy_configurations = {
-        'cubic_1nm': cubic_1nm,
-        'cubic_3nm': cubic_3nm,
+
         'cubic_5nm': cubic_5nm,
-        'cubic_7nm': cubic_7nm,
-        'cubic_9nm': cubic_9nm,
-        'cubic_12nm': cubic_12nm
     }
 
     for name, alloy in alloy_configurations.items():
